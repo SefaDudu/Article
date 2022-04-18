@@ -1,0 +1,47 @@
+﻿@using Article.Models
+@model List<Category>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    i {
+        color: black;
+        font-size: 55px;
+    }
+    .card-body {
+
+        min-height:130px;
+    }
+        .card-body .row .col-6:last-child {
+        color: black;
+        font-family: fantasy;
+        font-size: 25px;
+        margin-left: -23px;
+        margin-top: 4px;
+    }
+
+</style>
+<div class="row">
+    @foreach (var x in Model)
+    {
+
+
+    <div class="col-3 mt-2">
+        <div class="card">
+
+            <div class="card-body">
+                
+                    <div class="row" style="display: flex;justify-content: center;">
+                        <i class="fa-solid @x.Icon"></i>
+
+                    </div>
+                    <div class="row" style="display: flex; justify-content: center; margin-top: 10px; font-size: 20px; font-family: fantasy; letter-spacing: 2px;">@x.Name</div>
+                
+            </div>
+        </div>
+    </div>
+    }
+</div>
+
+
