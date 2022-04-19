@@ -13,6 +13,7 @@ namespace Article.Models
 
         public string Name { get; set; }
         public string Icon { get; set; }
+        public List<Product> Product { get; set; }
 
     }
 }
