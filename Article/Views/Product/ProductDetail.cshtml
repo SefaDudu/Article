@@ -167,30 +167,23 @@ header h3 {
   border: 2px solid white;
 }
 
-.sample-colors div:not(:first-of-type) {
-  background: teal;
-  margin: 0 15px;
-}
 
-button {
-  width: 170px;
-  height: 35px;
-  border: none;
-  margin-top: 14px;
-  font-family: 'Literata', serif;
-}
 
-button:first-of-type {
-  background: #4FC3F7;
-  border-radius: 4px;
-  margin-right: 10px;
-}
+        page {
+            width: 170px;
+            height: 35px;
+            border: none;
+            margin-top: 14px;
+            font-family: 'Literata', serif;
+        }
 
-button:nth-of-type(2) {
-  background: white;
-  border: 2px solid #4FC3F7;
-  border-radius: 4px;
-}
+        sale {
+            background: #4FC3F7 !important;
+            border-radius: 4px !important;
+            margin-right: 10px !important;
+        }
+
+
 
 .img-options {
   display: flex;
@@ -243,8 +236,8 @@ button:nth-of-type(2) {
             <p>@Model.Feature</p>
             <p><span>$@Model.UnitPrice</span></p>
 
-            <button>Satın Al</button>
-            <button>Sepete Ekle</button>
+            <button class="sale page">Satın Al</button>
+            <button class=" page">Sepete Ekle</button>
         </div>
     </div>
 </section>
