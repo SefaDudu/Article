@@ -13,5 +13,6 @@ namespace Article.Models
 
         public string Email { get; set; }
         public string password { get; set; }
+        public List<Address> Address { get; set; }
     }
 }

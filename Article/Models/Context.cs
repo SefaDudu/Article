@@ -353,6 +353,17 @@ namespace Article.Models
                       }
 
                );
+            modelBuilder.Entity<Address>()
+              .HasData(
+                  new Address
+                  {
+                      Id = 1,
+                     Name="Ev",
+                     Description="Ev Adresi",
+                     UserId=1
+
+                  }
+                    );
         }
 
 
@@ -360,5 +371,6 @@ namespace Article.Models
         public DbSet<Users> Users { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Address> Addresses { get; set; }
     }
 }

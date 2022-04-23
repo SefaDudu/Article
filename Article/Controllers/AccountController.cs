@@ -60,6 +60,12 @@ namespace Article.Controllers
             return RedirectToAction("Login");
         }
 
+        public async Task<IActionResult> LogOut()
+        {
+            await HttpContext.SignOutAsync();
+
+            return RedirectToAction("Login");
+        }
 
     }
 }
