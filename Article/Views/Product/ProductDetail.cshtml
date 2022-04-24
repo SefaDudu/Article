@@ -1,5 +1,5 @@
-﻿@using Article.Models
-@model Product 
+﻿@using Article.ViewsModel
+@model ProductDetailVm 
 @{
     ViewData["Title"] = "ProductDetail";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -222,19 +222,19 @@ header h3 {
         <div class="img-card">
             <div class='img'>
                 <i class="far fa-heart"></i>
-                <img src="@Model.Photo" />
+                <img src="@Model.Product.Photo" />
             </div>
             <div class='img-options'>
-                <div><img src="@Model.Photo" /></div>
+                <div><img src="@Model.Product.Photo" /></div>
             </div>
         </div>
         <div class="product-details">
-            <h2>@Model.Name</h2>
-            <p>@Model.Description</p>
+            <h2>@Model.Product.Name</h2>
+            <p>@Model.Product.Description</p>
 
             <p><i class="fas fa-star"></i>4.5 | <span>2 Yorumlar</span></p>
-            <p>@Model.Feature</p>
-            <p><span>$@Model.UnitPrice</span></p>
+            <p>@Model.Product.Feature</p>
+            <p><span>$@Model.Product.UnitPrice</span></p>
 
             <button class="sale page">Satın Al</button>
             <button class=" page">Sepete Ekle</button>
@@ -242,3 +242,51 @@ header h3 {
     </div>
 </section>
 </div>
+
+<div class="row mt-1">
+
+    <div class="col-md-12">
+        <div class="col-md-6">
+            <div class="form-group">
+                <form method="post" asp-action="ProductDetail" asp-controller="Product">
+                    <input type="hidden"  value="@Model.Product.Id" name="ProductId" />
+
+                    <label> Açıklama</label>
+                    <textarea cols="3" rows="3" class="form-control" name="Comment" > </textarea>
+                    <br />
+                    <button type="submit" class="btn btn-warning"> Yorum Ekle</button>
+                     
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+<div class="row">
+    <table class="table table-striped table-sm" id="Comments-table">
+        <thead>
+
+            <tr>
+                <th scope="col">User Name</th>
+                <th scope="col"> E-Mail</th>
+                <th scope="col">Description</th>
+
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model.CommentVm)
+            {
+                <tr>
+                    <td scope="col">@item.FirstName @item.LastName</td>
+                    <td scope="col">@item.Email</td>
+                    <td scope="col">@Html.Raw(item.Comment)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+

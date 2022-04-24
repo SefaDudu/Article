@@ -122,6 +122,34 @@ namespace Article.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Article.Models.Comment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UsersId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("UsersId");
+
+                    b.ToTable("Comments");
+                });
+
             modelBuilder.Entity("Article.Models.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -403,7 +431,19 @@ namespace Article.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<DateTime>("Birthday")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Surname")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("password")
@@ -417,7 +457,11 @@ namespace Article.Migrations
                         new
                         {
                             Id = 1,
+                            Birthday = new DateTime(1998, 12, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "sefa@sefa",
+                            Name = "Sefa",
+                            Phone = "4534534",
+                            Surname = "Dudu",
                             password = "sefa"
                         });
                 });
@@ -427,6 +471,23 @@ namespace Article.Migrations
                     b.HasOne("Article.Models.Users", "Users")
                         .WithMany("Address")
                         .HasForeignKey("UsersId");
+
+                    b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("Article.Models.Comment", b =>
+                {
+                    b.HasOne("Article.Models.Product", "Product")
+                        .WithMany("Comment")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Article.Models.Users", "Users")
+                        .WithMany()
+                        .HasForeignKey("UsersId");
+
+                    b.Navigation("Product");
 
                     b.Navigation("Users");
                 });
@@ -445,6 +506,11 @@ namespace Article.Migrations
             modelBuilder.Entity("Article.Models.Category", b =>
                 {
                     b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("Article.Models.Product", b =>
+                {
+                    b.Navigation("Comment");
                 });
 
             modelBuilder.Entity("Article.Models.Users", b =>

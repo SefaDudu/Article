@@ -7,16 +7,16 @@ using System.Linq;
 using Dapper;
 using Article.ViewsModel;
 using System;
-
+using System.Security.Claims;
 
 namespace Article.Controllers
 {
     public class ProductController : Controller
     {
         Context context = new Context();
-        
 
-        public async Task<IActionResult> Index(string? id,  string? word)
+
+        public async Task<IActionResult> Index(string? id, string? word)
         {
             var conn = context.Database.GetDbConnection();
             await conn.OpenAsync();
@@ -53,12 +53,54 @@ namespace Article.Controllers
             return View(productVm);
         }
 
-        public IActionResult ProductDetail(int id)
+        [HttpGet]
+        public IActionResult ProductDetail(int id )
         {
-            var product = context.Products.Find(id);
-            return View(product);
+            var result = from comment in context.Comments
+                         join users in context.Users
+                             on comment.UserId equals users.Id
+                         select new CommentVm { Comment = comment.Description, Email = users.Email, FirstName = users.Name, LastName = users.Surname };
+           
+            ProductDetailVm productDetailVm = new ProductDetailVm()
+            {
+                Product = context.Products.FirstOrDefault(x => x.Id == id),
+                CommentVm = result.ToList()
+            };
+            return View(productDetailVm);
+        }
+        [HttpPost]
+        public IActionResult ProductDetail(ProductDetailPostVm productDetailPostVm)
+        {
+            if (productDetailPostVm.Comment != null)
+            {
+                var userEmail = User.FindFirstValue(ClaimTypes.Name);
+                var getUser = context.Users.FirstOrDefault(x => x.Email == userEmail);
+                Comment comment = new Comment()
+                {
+                    Description = productDetailPostVm.Comment,
+                    ProductId = productDetailPostVm.ProductId,
+                    UserId = getUser.Id
+                };
+                context.Comments.Add(comment);
+                context.SaveChanges();
+            }
+
+            var result = from comment in context.Comments
+                         join users in context.Users
+                             on comment.UserId equals users.Id
+                         select new CommentVm { Comment = comment.Description, Email = users.Email, FirstName = users.Name, LastName = users.Surname };
+
+            ProductDetailVm productDetailVm = new ProductDetailVm()
+            {
+                Product = context.Products.FirstOrDefault(x => x.Id == productDetailPostVm.ProductId),
+                CommentVm = result.ToList()
+            };
+
+
+
+            return View(productDetailVm);
         }
 
 
     }
-}
+} 

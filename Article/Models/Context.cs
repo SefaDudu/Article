@@ -22,7 +22,12 @@ namespace Article.Models
                     {
                         Id = 1,
                         Email = "sefa@sefa",
-                        password = "sefa"
+                        password = "sefa",
+                        Name="Sefa",
+                        Surname="Dudu",
+                        Birthday= new DateTime(1998,12,07),
+                        Phone="4534534"
+
                     }
                 );
             modelBuilder.Entity<Category>()
@@ -372,5 +377,6 @@ namespace Article.Models
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Address> Addresses { get; set; }
+        public DbSet<Comment> Comments { get; set; }
     }
 }
