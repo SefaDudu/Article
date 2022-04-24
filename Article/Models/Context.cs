@@ -10,7 +10,8 @@ namespace Article.Models
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=.;Database=Article;Trusted_Connection=true");
+            
+            optionsBuilder.UseSqlServer(@"Data Source = 46.20.155.5; Initial Catalog = Article; User ID = sa; Password = rmEe9dbX1dPVuS1Zo");
             //optionsBuilder.UseSqlServer(@"Server=DESKTOP-5QK28QU\SQLEXPRESS;Database=Article;Trusted_Connection=true");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
