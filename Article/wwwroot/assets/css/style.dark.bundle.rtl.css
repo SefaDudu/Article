@@ -4788,16 +4788,16 @@ textarea.form-control-lg {
 }
 
 .card {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  word-wrap: break-word;
-  background-color: #1E1E2D;
-  background-clip: border-box;
-  border: 1px solid #2B2B40;
-  border-radius: 0.475rem;
-  box-shadow: none;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #1E1E2D;
+    background-clip: border-box;
+    border: 1px solid #ff6000;
+    border-radius: 0.475rem;
+    box-shadow: none;
 }
 .card > hr {
   margin-left: 0;

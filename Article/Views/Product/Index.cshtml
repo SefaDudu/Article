@@ -61,6 +61,9 @@
                     top: 20px;
                     transform: rotate(45deg);
                 }
+        .product:hover {
+            background: #ff6000 !important;
+        }
     </style>
 
 }
@@ -77,13 +80,11 @@
         <div class="col-md-4 mb-3 mb-md-0">
             <div class="card h-100">
                 <div class="labels">
-                    <div class="label-new bg-success text-white text-center py-1">New</div>
+                    <div class="label-new bg-success text-white text-center py-1" style="background: red !important;">New</div>
                 </div>
                 <img src="@product.Photo" alt="">
                 <div class="card-body position-relative d-flex flex-column">
-                    <a href="#" class="add-to-cart bg-primary text-white" data-toggle="tooltip" data-placement="left" title="Sepete Ekle">
-                        <i class="fa-solid fa-basket-shopping"></i>
-                    </a>
+                    
                     <h3 class="text-success">₺@product.UnitPrice</h3>
                     <div class="rating text-warning">
                         <i class="fa fa-star" aria-hidden="true"></i>
@@ -95,7 +96,7 @@
                     <h4>@product.Name</h4>
                     <p>@product.Description</p>
                     <p>@product.Feature</p>
-                    <a href="/Product/ProductDetail/@product.Id"  class="btn btn-success btn-block mt-auto" >
+                    <a href="/Product/ProductDetail/@product.Id"  class="btn btn-success btn-block mt-auto product" style="background: #ff6000;">
                         <i class="fa fa-eye" aria-hidden="true"></i>
                         Ürün Detayı
                     </a>

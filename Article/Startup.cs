@@ -26,6 +26,8 @@ namespace Article
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+                //.AddRazorRuntimeCompilation();
+
             services.AddMvc();
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -34,6 +36,8 @@ namespace Article
                       options.LoginPath = "/Account/Login/";
                   });
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddHttpContextAccessor();
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,7 +57,7 @@ namespace Article
             app.UseStaticFiles();
             app.UseAuthentication();
             app.UseRouting();
-
+            app.UseSession();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
