@@ -13,7 +13,7 @@
 
             <h2>Sepet</h2>
             <hr />
-            <table class="table table-bordered">
+            <table class="table table-bordered" style="text-align: center;">
                 <thead>
                     <tr>
                         <th> Resim   </th>
@@ -27,9 +27,9 @@
                     @foreach (var x in Model.CartLines)
                     {
                         <tr>
-                            <td> <img  src="https://www.projesoft.com.tr/wp-content/uploads/2018/08/eticaret-sepet.png" width="50"/>  </td>
-                            <td> @x.Product.Name    </td>
-                            <td> @x.Product.UnitPrice    </td>
+                            <td style="padding: 0px;text-align: center;width: 200px;"> <img src="@x.Product.Photo" style="width: 200px;height: 200px;" />  </td>
+                            <td style=" vertical-align: middle;text-align: center;"> <h2> @x.Product.Name   </h2> </td>
+                            <td style=" vertical-align: middle;text-align: center;"><h2> @x.Product.UnitPrice  </h2> </td>
                         </tr>
 
                     }
@@ -37,7 +37,7 @@
                 </tbody>
                 <tfoot>
                     <td colspan="2">Fiyat</td>
-                    <td>@Model.Total().ToString("c")</td>
+                    <td><h2>  @Model.Total().ToString("c") </h2></td>
                 </tfoot>
             </table>
         </div>
