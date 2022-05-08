@@ -12,7 +12,7 @@ namespace Article.Models
         {
 
             //optionsBuilder.UseSqlServer(@"Data Source = 46.20.155.5; Initial Catalog = Article; User ID = sa; Password = rmEe9dbX1dPVuS1Zo");
-            optionsBuilder.UseSqlServer(@"Server=.;Database=ArticleNew;Trusted_Connection=true");
+            optionsBuilder.UseSqlServer(@"Server=DESKTOP-5QK28QU\SQLEXPRESS;Database=ArticleNew;Trusted_Connection=true");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -59,6 +59,7 @@ namespace Article.Controllers
             var result = from comment in context.Comments
                          join users in context.Users
                              on comment.UserId equals users.Id
+                         where comment.ProductId == id 
                          select new CommentVm { Comment = comment.Description, Email = users.Email, FirstName = users.Name, LastName = users.Surname };
            
             ProductDetailVm productDetailVm = new ProductDetailVm()
@@ -88,6 +89,7 @@ namespace Article.Controllers
             var result = from comment in context.Comments
                          join users in context.Users
                              on comment.UserId equals users.Id
+                         where comment.ProductId == productDetailPostVm.ProductId
                          select new CommentVm { Comment = comment.Description, Email = users.Email, FirstName = users.Name, LastName = users.Surname };
 
             ProductDetailVm productDetailVm = new ProductDetailVm()
