@@ -11,7 +11,7 @@ namespace Article.Models
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 
-            optionsBuilder.UseSqlServer(@"Server=.;Database=ArticleNew;Trusted_Connection=true");
+            optionsBuilder.UseSqlServer(@"Server=localhost;Database=ArticleNew;Persist Security Info=True;User ID=sa;Password=Password123;MultipleActiveResultSets=True;");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
